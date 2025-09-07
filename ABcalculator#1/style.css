@@ -1,0 +1,75 @@
+:root{
+  --bg: #0f172a;
+  --panel: rgba(17,24,39,0.75);
+  --key: #1f2937;
+  --key-alt: #334155;
+  --accent: #22c55e;
+  --danger: #ef4444;
+  --text: #e5e7eb;
+  --muted: #94a3b8;
+  --shadow: 0 10px 30px rgba(0,0,0,.35);
+  --radius: 20px;
+}
+*{box-sizing:border-box}
+body{
+  margin:0; min-height:100svh; font-family: system-ui, "Noto Sans Arabic", Arial, sans-serif;
+  background: var(--bg);
+  color:var(--text);
+  display:grid; place-items:center; padding:24px;
+  transition: background 0.5s ease;
+}
+
+.calc{
+  width:min(380px, 94vw); backdrop-filter: blur(14px);
+  background:var(--panel);
+  border-radius: var(--radius); box-shadow: var(--shadow);
+  overflow:hidden; border:1px solid rgba(255,255,255,.08);
+  animation: fadeIn .6s ease;
+}
+@keyframes fadeIn{from{opacity:0; transform:scale(.9);} to{opacity:1; transform:scale(1);}}
+
+.topbar{
+  display:flex; justify-content:flex-end; padding:8px 12px; background:rgba(255,255,255,0.05);
+}
+.topbar button{
+  background:none; border:none; color:var(--text); font-size:22px; cursor:pointer; transition:.3s;
+}
+.topbar button:hover{ transform:rotate(90deg); }
+
+.display{
+  padding:20px 18px; text-align:left; direction:ltr;
+  background:rgba(255,255,255,0.03);
+  border-bottom:1px solid rgba(255,255,255,0.08);
+}
+.expr{ min-height:24px; color:var(--muted); font-size:15px; }
+.result{ font-weight:700; font-size:40px; }
+.words{ font-size:14px; color:var(--accent); margin-top:4px; }
+
+.keys{
+  display:grid; grid-template-columns: repeat(4, 1fr); gap:10px; padding:14px;
+}
+
+button{
+  appearance:none; border:none; cursor:pointer; padding:16px; border-radius:14px; font-size:18px; font-weight:600;
+  background:var(--key); color:var(--text);
+  transition: all .2s ease;
+}
+button:hover{ filter:brightness(1.2); transform:translateY(-2px); }
+button:active{ transform: scale(.95); }
+button.op{ background:var(--key-alt); }
+button.equals{ background:var(--accent); color:#071b11; }
+button.danger{ background:var(--danger); }
+button.span-2{ grid-column: span 2; }
+
+.footer{ color:var(--muted); font-size:12px; text-align:center; padding:8px 12px 16px; }
+
+.modal{
+  position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,.6); display:none;
+  align-items:center; justify-content:center;
+}
+.modal-content{
+  background:var(--panel); padding:20px; border-radius:12px; min-width:260px;
+}
+.modal-content h2{ margin-top:0; }
+.modal-content p{ font-size:14px; color:var(--text); }
+.modal-content button{ margin-top:10px; display:block; width:100%; }
